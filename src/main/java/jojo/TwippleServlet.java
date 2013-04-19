@@ -55,7 +55,7 @@ public class TwippleServlet extends HttpServlet {
 				session.setAttribute("userData", dto);
 				request.getRequestDispatcher("home.jsp").forward(request, response);
 			} else {
-				request.setAttribute("message", "¦ƒ†[ƒU[–¼A‚Ü‚½‚ÍƒpƒXƒ[ƒh‚ªŠÔˆá‚Á‚Ä‚¢‚Ü‚·");
+				request.setAttribute("message", "â€»ãƒ¦ãƒ¼ã‚¶ãƒ¼åã€ã¾ãŸã¯ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ãŒé–“é•ã£ã¦ã„ã¾ã™");
 				request.getRequestDispatcher("login.jsp").forward(request,response);
 			}	
 		}catch (SQLException e) {

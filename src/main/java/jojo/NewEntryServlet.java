@@ -46,7 +46,7 @@ public class NewEntryServlet extends HttpServlet {
 		String password2 = request.getParameter("password2");
 		
 		if(!this.check(name) || !this.check(password) || !this.check(password2)){
-			request.setAttribute("message3", "¦“ü—Í‚ª³‚µ‚­‚ ‚è‚Ü‚¹‚ñ");
+			request.setAttribute("message3", "â€»å…¥åŠ›ãŒæ­£ã—ãã‚ã‚Šã¾ã›ã‚“");
 			request.getRequestDispatcher("NewEntry.jsp").forward(request,response);
 			return; 
 		}
@@ -65,14 +65,14 @@ public class NewEntryServlet extends HttpServlet {
 					session.setAttribute("userData", dto);
 					request.getRequestDispatcher("finish.jsp").forward(request,response);
 				} else {
-					request.setAttribute("message2", "¦Šù‚É‘¶İ‚µ‚Ä‚¢‚éƒ†[ƒU–¼‚Å‚·");
+					request.setAttribute("message2", "â€»æ—¢ã«å­˜åœ¨ã—ã¦ã„ã‚‹ãƒ¦ãƒ¼ã‚¶åã§ã™");
 					request.getRequestDispatcher("NewEntry.jsp").forward(request,response);
 				}
 			} catch (SQLException e) {
 				System.out.println(e.getMessage());
 			}
 		} else {
-			request.setAttribute("message", "¦ƒpƒXƒ[ƒh‚ªˆá‚¢‚Ü‚·");
+			request.setAttribute("message", "â€»ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ãŒé•ã„ã¾ã™");
 			request.getRequestDispatcher("NewEntry.jsp").forward(request,response);
 		}
 	}
