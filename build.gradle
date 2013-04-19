@@ -1,3 +1,8 @@
+ext {
+    encoding = 'utf-8'
+}
+
+
 apply plugin: 'java'
 apply plugin: 'war'
 apply plugin: 'jetty'
@@ -21,4 +26,21 @@ dependencies {
 
 task wrapper(type: Wrapper) {
     gradleVersion = '1.5'
+}
+
+/**
+ * convert encoding for src
+ */
+task convertEncoding << {
+  fileTree(dir: 'src/main/java/').each {
+  		println "windows-31j -> $encoding"
+			println it
+				it.write(it.getText('windows-31j'), encoding)
+				}
+ 
+ fileTree(dir: 'src/main/webapp/', include: 'index.html').each {
+ 	       println "shift_jis -> $encoding"
+	       	       println it
+		       	       it.write(it.getText('shift_jis'), encoding)
+			       }
 }
