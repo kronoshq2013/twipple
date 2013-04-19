@@ -53,7 +53,7 @@ public class SpeakServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		try {
 			con = ConnectionUtils.getConnection();
-			// Ctrl + 2 ¨ l
+			// Ctrl + 2 â†’ l
 			UserDao userDao = new UserDao(con);
 			int count = userDao.speakInsert(speak);
 			System.out.println(count);
@@ -62,7 +62,7 @@ public class SpeakServlet extends HttpServlet {
 				UserDao dao = new UserDao(con);
 				List<TsubuyakiDto> tweets = dao.getSpeak(con);
 				
-				// 10Œ‚¾‚¯‚É‚·‚é
+				// 10ä»¶ã ã‘ã«ã™ã‚‹
 				List<TsubuyakiDto> tweets10 = new TsubuyakiLogic().extract(tweets);
 				
 				
@@ -70,7 +70,7 @@ public class SpeakServlet extends HttpServlet {
 				request.getRequestDispatcher("home.jsp").forward(request,
 						response);
 			} else {
-				request.setAttribute("message", "¦–â‘è‚ª”­¶‚µ‚Ü‚µ‚½");
+				request.setAttribute("message", "â€»å•é¡ŒãŒç™ºç”Ÿã—ã¾ã—ãŸ");
 				request.getRequestDispatcher("home.jsp").forward(request,
 						response);
 			}

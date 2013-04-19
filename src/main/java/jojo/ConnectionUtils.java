@@ -10,7 +10,7 @@ import javax.sql.DataSource;
 
 public class ConnectionUtils {
 	private static String RESOURCE_NAME = "java:comp/env/jdbc/oracle";
-	private static String ERROR_MESSAGE = "ƒ‹ƒbƒNƒAƒbƒvƒŠƒ\[ƒX–¼‚ªˆá‚¤‚©AJDBCƒhƒ‰ƒCƒo‚ªƒNƒ‰ƒXƒpƒX‚Éƒ[ƒh‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ";
+	private static String ERROR_MESSAGE = "ãƒ«ãƒƒã‚¯ã‚¢ãƒƒãƒ—ãƒªã‚½ãƒ¼ã‚¹åãŒé•ã†ã‹ã€JDBCãƒ‰ãƒ©ã‚¤ãƒãŒã‚¯ãƒ©ã‚¹ãƒ‘ã‚¹ã«ãƒ­ãƒ¼ãƒ‰ã•ã‚Œã¦ã„ã¾ã›ã‚“";
 	
 	public static Connection getConnection() throws SQLException {
 		Connection con = null;
