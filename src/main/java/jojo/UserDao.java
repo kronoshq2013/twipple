@@ -36,11 +36,11 @@ public class UserDao {
 			if (ps != null)
 				ps.close();
 		} catch (SQLException e) {
-			// ‚±‚±‚à‚¤‚Ü‚­‚â‚è‚½‚¢‚Ë
+			// ã“ã“ã‚‚ã†ã¾ãã‚„ã‚ŠãŸã„ã­
 			
 			System.out.println(e.getMessage());
 		} finally {
-			// ps ‚àƒNƒ[ƒY‚µ‚Ü‚µ‚å‚¤
+			// ps ã‚‚ã‚¯ãƒ­ãƒ¼ã‚ºã—ã¾ã—ã‚‡ã†
 			
 			try {
 				if (con != null)
@@ -57,7 +57,7 @@ public class UserDao {
 	public int insert(String name, String password ) throws SQLException {
 		int result = 0;
 		
-		// SQL•¶‚ğì¬‚·‚é
+		// SQLæ–‡ã‚’ä½œæˆã™ã‚‹
 		StringBuilder sbSQL = new StringBuilder();
 		sbSQL.append(" insert into users ");
 		sbSQL.append("select ");
@@ -66,7 +66,7 @@ public class UserDao {
 	    sbSQL.append("      ,? ");
 	    sbSQL.append("      from users ");
 		
-		// SQL•¶‚É’l‚ğİ’è‚·‚é
+		// SQLæ–‡ã«å€¤ã‚’è¨­å®šã™ã‚‹
 		PreparedStatement stmt = con.prepareStatement(sbSQL.toString());
 		
 		stmt.setString(1, name);
@@ -75,12 +75,12 @@ public class UserDao {
 
 		
 		try {
-			// SQL•¶‚ğÀs‚µA‚»‚ÌŒ‹‰Ê‚ğæ“¾‚·‚é
+			// SQLæ–‡ã‚’å®Ÿè¡Œã—ã€ãã®çµæœã‚’å–å¾—ã™ã‚‹
 			result = stmt.executeUpdate();
 		}catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}finally {
-			// ƒRƒlƒNƒVƒ‡ƒ“‚ğ•Â‚¶‚é
+			// ã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³ã‚’é–‰ã˜ã‚‹
 			try {
 				if (con != null) { 
 				con.close();
@@ -94,7 +94,7 @@ public class UserDao {
 	public int speakInsert(String speak) throws SQLException {
 		int result = 0;
 		
-		// SQL•¶‚ğì¬‚·‚é
+		// SQLæ–‡ã‚’ä½œæˆã™ã‚‹
 		StringBuilder sbSQL = new StringBuilder();
 		sbSQL.append(" insert into tsubuyaki ");
 		sbSQL.append("select ");
@@ -103,7 +103,7 @@ public class UserDao {
 	    sbSQL.append("      ,systimestamp ");
 	    sbSQL.append("          from tsubuyaki ");
 		
-		// SQL•¶‚É’l‚ğİ’è‚·‚é
+		// SQLæ–‡ã«å€¤ã‚’è¨­å®šã™ã‚‹
 		PreparedStatement stmt = con.prepareStatement(sbSQL.toString());
 		
 		stmt.setString(1, speak);
@@ -111,11 +111,11 @@ public class UserDao {
 
 		
 		try {
-			// SQL•¶‚ğÀs‚µA‚»‚ÌŒ‹‰Ê‚ğæ“¾‚·‚é
+			// SQLæ–‡ã‚’å®Ÿè¡Œã—ã€ãã®çµæœã‚’å–å¾—ã™ã‚‹
 			result = stmt.executeUpdate();
 		}catch (SQLException e) {
 			System.out.println(e.getMessage());
-			// ƒRƒlƒNƒVƒ‡ƒ“‚ğ•Â‚¶‚é
+			// ã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³ã‚’é–‰ã˜ã‚‹
 		}
 		return result;
 	}
@@ -137,10 +137,10 @@ public class UserDao {
 		    System.out.println(sbSQL.toString());
 			
 		    ResultSet rs = ps.executeQuery();
-			// UserƒIƒuƒWƒFƒNƒg‚ğŠi”[‚·‚éƒŠƒXƒg‚ğì‚è‚Ü‚·B
+			// Userã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æ ¼ç´ã™ã‚‹ãƒªã‚¹ãƒˆã‚’ä½œã‚Šã¾ã™ã€‚
 			List<TsubuyakiDto> users = new ArrayList<TsubuyakiDto>();
 			while(rs.next()){
-				// ResultSet‚ÌŒ‹‰Ê‚ğDTO‚É‹l‚ß‚İ‚Ü‚·I
+				// ResultSetã®çµæœã‚’DTOã«è©°ã‚è¾¼ã¿ã¾ã™ï¼
 				TsubuyakiDto userDTO = new TsubuyakiDto();
 				userDTO.setSpeak(rs.getString("speak"));
 				userDTO.setDt(rs.getString("dt"));
@@ -148,8 +148,8 @@ public class UserDao {
 			}
 			return users;
 		} catch (SQLException e) {
-			// ‚Ç‚¤‚µ‚æH
-			// null‚ğ•Ô‚·H ‹ó‚Á‚Û‚ÌƒŠƒXƒg‚ğ•Ô‚·H SQLException‚ğ‚»‚Ì‚Ü‚Ü•Ô‚·H “Æ©‚Ì—áŠOƒNƒ‰ƒX‚ğ•Ô‚·H
+			// ã©ã†ã—ã‚ˆï¼Ÿ
+			// nullã‚’è¿”ã™ï¼Ÿ ç©ºã£ã½ã®ãƒªã‚¹ãƒˆã‚’è¿”ã™ï¼Ÿ SQLExceptionã‚’ãã®ã¾ã¾è¿”ã™ï¼Ÿ ç‹¬è‡ªã®ä¾‹å¤–ã‚¯ãƒ©ã‚¹ã‚’è¿”ã™ï¼Ÿ
 			e.printStackTrace();
 			throw e;
 		} finally{
