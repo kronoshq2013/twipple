@@ -10,11 +10,11 @@ When do not install gradle then use "gradlew" by OS type.
 * Windows: gradlew.bat <execute tasks>
 * Unix: ./gradlew <execute tasks>
 
-#### compile on gradle
+#### Compile on gradle
 
   gradle compileJava
 
-#### eclipse setup
+#### Setup eclipse project
 
   gradle eclipse
 
