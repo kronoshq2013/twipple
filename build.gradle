@@ -2,11 +2,45 @@ ext {
     encoding = 'utf-8'
 }
 
+buildscript {
+    repositories {
+        add(new org.apache.ivy.plugins.resolver.URLResolver()) {
+            name = 'GitHub'
+            addArtifactPattern 'http://cloud.github.com/downloads/[organisation]/[module]/[module]-[revision].[ext]'
+        }
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'org.gradle.api.plugins:gradle-tomcat-plugin:0.9.8',
+                    'jamescarr:h2-gradle-plugin:0.8.2',
+                    'com.h2database:h2:1.3.164'  // choose your own version
+    }
+}
 
 apply plugin: 'java'
 apply plugin: 'war'
-apply plugin: 'jetty'
+/**
+ * @see https://github.com/bmuschko/gradle-tomcat-plugin
+ * デフォルトプラグインはjetty6になってServlet3.0が使えないので一旦サーバはTomcatにする
+ */
+apply plugin: 'tomcat'
+// apply plugin: 'jetty'
+
 apply plugin: 'eclipse-wtp'
+/**
+ * @see https://github.com/jamescarr/h2-gradle-plugin
+ */
+apply plugin: 'h2'
+
+/**
+ * Declare configurations
+ */
+configurations {
+    compile {
+        extendsFrom tomcat
+    }
+}
 
 /**
  * Repositories
@@ -21,7 +55,38 @@ repositories {
  * @see http://www.gradle.org/docs/current/userguide/userguide_single.html#sec:how_to_declare_your_dependencies
  */
 dependencies {
-    compile 'org.mortbay.jetty:servlet-api:3.0.20100224' 
+
+    def tomcatVersion = '7.0.39'
+    tomcat "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}",
+           "org.apache.tomcat.embed:tomcat-embed-logging-juli:${tomcatVersion}",
+           "org.apache.tomcat:tomcat-dbcp:${tomcatVersion}"
+    tomcat("org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}") {
+        exclude group: 'org.eclipse.jdt.core.compiler', module: 'ecj'
+    }
+
+    providedCompile "org.apache.tomcat:tomcat-jsp-api:${tomcatVersion}",
+                    "org.apache.tomcat:tomcat-servlet-api:${tomcatVersion}"
+
+    runtime 'jstl:jstl:1.2'
+}
+
+h2 {
+    tcpPort = 9092
+    webPort = 8082
+
+    data {
+        scripts = [
+             'db/create.sql'
+        ]
+    }
+}
+
+tomcatRunWar {
+    configFile = file('context.xml')
+
+    doFirst {
+        h2start.execute()
+    }
 }
 
 task wrapper(type: Wrapper) {
