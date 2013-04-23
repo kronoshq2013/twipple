@@ -20,4 +20,9 @@ When do not install gradle then use "gradlew" by OS type.
 
 #### Start Web Server
 
-  gradle jettyRunWar
+  gradle tomcatRunWar
+
+#### DataBase
+
+* 開発用DBはh2を使用
+* WebServer起動と同時にDBサーバを起動するよう設定
