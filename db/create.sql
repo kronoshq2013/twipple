@@ -1,3 +1,5 @@
 DROP TABLE IF EXISTS users;
 CREATE TABLE users(usid INT PRIMARY KEY, name VARCHAR(255), password VARCHAR(255));
 INSERT INTO users VALUES ( 0, 'test', 'test');
+CREATE TABLE tsubuyaki(id INT PRIMARY KEY, speak VARCHAR(255), dt VARCHAR(255));
+INSERT INTO tsubuyaki VALUES ( 0, 'test', '2013/04/01 00:00:00');

@@ -3,7 +3,7 @@
     <Resource
         name="jdbc/oracle" 
         type="javax.sql.DataSource" 
-        url="jdbc:h2:./data" 
+        url="jdbc:h2:./data;MODE=Oracle" 
         driverClassName="org.h2.Driver" 
         username="sa" 
         password=""
